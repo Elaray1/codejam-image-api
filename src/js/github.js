@@ -1,4 +1,4 @@
-window.onload = function() {
+// window.onload = function() {
 const anchorTag = document.getElementById('login')
 const outputText = document.getElementById('output')
 anchorTag.addEventListener('click', (e) => {
@@ -9,4 +9,4 @@ anchorTag.addEventListener('click', (e) => {
     outputText.innerText = "Authenticated with GitHub. Access Token: " + data.token
   })
 })
-}
+// }
