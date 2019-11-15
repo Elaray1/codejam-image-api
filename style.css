@@ -145,3 +145,11 @@ input[type=color]::-moz-color-swatch {
   color:#f6931f;
   font-weight:bold;
 }
+.github-auth-block {
+  width: 300px;
+  margin: 0 auto;
+}
+.github-auth-block h2 {
+  font-size: 20px;
+  margin: 20px 0;
+}
