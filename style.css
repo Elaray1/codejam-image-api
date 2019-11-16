@@ -96,6 +96,9 @@ input[type=color]::-moz-color-swatch {
 }
 #canvas {
   margin: 9px 0;
+  width: 512px;
+  height: 512px;
+  image-rendering: pixelated;
 }
 .canvas-btn {
   display: flex;
