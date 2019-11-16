@@ -257,27 +257,23 @@ window.onload = function() {
     $("#pencil-size").val($("#slider-range-pencil").slider("value"));
   });
   const accessKey = 'c29222b3f06bea411227ea9ea7b7878aed59e164737b3c4408060aca8a1c585f';
-  async function getLinkToImage(keyword) {
-  const url = `https://api.unsplash.com/photos/random?query=town,${keyword}&client_id=${accessKey}`;
-  let data = await fetch(url).then(res => res.json());
-  let img = new Image();
-  img.onload = function() {
-  const width = this.width;
-  const height = this.height;
-  let koef;
-  if (width >= height) {
-    koef = canvas.width / this.width;
-  } else {
-    koef = canvas.heigt / this.height;
-  }
-  context.fillStyle = "rgb(192, 192, 192)";
-  context.fillRect(0, 0, canvas.width, canvas.height);
-  const center_x = (canvas.width - img.width * koef) / 2;
-  const center_y = (canvas.height - img.height * koef) / 2;
-  context.drawImage(img, 0, 0, img.width, img.height, center_x, center_y, img.width * koef, img.height * koef);
-  }
-  img.src = data.urls.small;
-  img.crossOrigin = "Anonymous";
+  async function getLinkToImage(city) {
+    const url = `https://api.unsplash.com/photos/random?query=town,${city}&client_id=${accessKey}`;
+    const data = await fetch(url).then(res => res.json());
+    let img = new Image();
+    img.crossOrigin = "Anonymous";
+    img.src = data.urls.small;
+    img.onload = function () {
+      const wRatio = canvas.width / img.width;
+      const hRatio = canvas.height / img.height;
+      const ratio = Math.min(wRatio, hRatio);
+      const center_x = (canvas.width - img.width * ratio) / 2;
+      const center_y = (canvas.height - img.height * ratio) / 2;
+      context.fillStyle = "rgb(192, 192, 192)";
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(img, 0, 0, img.width, img.height,
+        center_x, center_y, img.width * ratio, img.height * ratio);
+    }
   }
   const grayscale = () => {
     const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
