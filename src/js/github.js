@@ -6,6 +6,5 @@ anchorTag.addEventListener('click', (e) => {
   authenticator.authenticate({provider:"github", scope: "user"}, (err, data) => {
     err ? outputText.innerText = "Error Authenticating with GitHub: " + err :
     outputText.innerText = "Authenticated with GitHub. Access Token: " + data.token;
-    console.log(data);
   })
 })
